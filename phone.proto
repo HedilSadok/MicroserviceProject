@@ -1,0 +1,52 @@
+syntax = "proto3";
+package phone;
+
+// Definition of the Phone message
+message Phone {
+    string id = 1;
+    string marque = 2;
+    string description = 3;
+    // Add other fields for phone data as needed
+}
+
+// Request message for getting phone details
+message GetPhoneRequest {
+    string phone_id = 1;
+}
+
+// Response message for getting phone details
+message GetPhoneResponse {
+    Phone phone = 1;
+}
+
+// Request message for searching phones
+message SearchPhoneRequest {
+    string query = 1;
+}
+
+// Response message for searching phones
+message SearchPhoneResponse {
+    repeated Phone phones = 1;
+}
+// Request message for creating a phone
+message CreatePhoneRequest {
+    string marque = 1;
+    string description = 2;
+}
+
+// Response message for creating a phone
+message CreatePhoneResponse {
+    Phone phone = 1;
+}
+
+// Phone service definition
+service PhoneService {
+    // RPC method to get phone details
+    rpc GetPhone(GetPhoneRequest) returns (GetPhoneResponse);
+
+    // RPC method to search for phones
+    rpc SearchPhone(SearchPhoneRequest) returns (SearchPhoneResponse);
+
+    // Add other RPC methods as needed
+    rpc CreatePhone (CreatePhoneRequest) returns (CreatePhoneResponse);
+}

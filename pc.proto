@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package pc;
+
+service PcService {
+  rpc CreatePc (CreatePcRequest) returns (CreatePcResponse);
+  rpc GetPc (GetPcRequest) returns (GetPcResponse);
+  rpc SearchPcs (SearchPcsRequest) returns (SearchPcsResponse);
+}
+
+message CreatePcRequest {
+  string marque = 1;
+  string description = 2;
+}
+
+message CreatePcResponse {
+  Pc pc = 1;
+}
+
+message GetPcRequest {
+  string pc_id = 1;
+}
+
+message GetPcResponse {
+  Pc pc = 1;
+}
+
+message SearchPcsRequest {
+  string query = 1;
+}
+
+message SearchPcsResponse {
+  repeated Pc pcs = 1;
+}
+
+message Pc {
+  string id = 1;
+  string marque = 2;
+  string description = 3;
+}
